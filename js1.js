@@ -178,3 +178,132 @@ printSkyColor();
 
 
 
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+
+
+let i = 0;
+while (i < 5) {
+    console.log(i);
+    i++;
+}
+
+
+
+let i = 0;
+do {
+    console.log(i);
+    i++;
+} while (i < 5);
+
+
+const colors = ['red', 'green', 'blue'];
+for (let i = 0; i < colors.length; i++) {
+    console.log(colors[i]);
+}
+
+
+const person = { name: 'Mike', age: 29 };
+for (let key in person) {
+    console.log(key + ': ' + person[key]);
+}
+
+
+const numbers = [1, 2, 3, 4, 5];
+numbers.forEach(function(number) {
+    console.log(number);
+});
+
+
+
+
+for (let i = 0; i < 10; i++) {
+    if (i === 5) {
+        break;
+    }
+    console.log(i); // Outputs: 0, 1, 2, 3, 4
+}
+
+
+for (let i = 0; i < 5; i++) {
+    if (i === 2) {
+        continue;
+    }
+    console.log(i); // Outputs: 0, 1, 3, 4
+}
+
+
+function calculateMean(numbers) {
+    const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+    return sum / numbers.length;
+}
+
+const numbers = [1, 2, 3, 4, 5];
+console.log("Mean:", calculateMean(numbers)); // Output: 3
+
+
+
+
+function calculateMedian(numbers) {
+    const sortedNumbers = numbers.sort((a, b) => a - b);
+    const middleIndex = Math.floor(sortedNumbers.length / 2);
+    if (sortedNumbers.length % 2 === 0) {
+        return (sortedNumbers[middleIndex - 1] + sortedNumbers[middleIndex]) / 2;
+    } else {
+        return sortedNumbers[middleIndex];
+    }
+}
+
+const numbers = [1, 2, 3, 4, 5];
+console.log("Median:", calculateMedian(numbers)); // Output: 3
+
+
+
+function calculateMode(numbers) {
+    const frequencyMap = {};
+    numbers.forEach(num => {
+        frequencyMap[num] = frequencyMap[num] ? frequencyMap[num] + 1 : 1;
+    });
+    let maxFrequency = 0;
+    let modes = [];
+    for (const num in frequencyMap) {
+        if (frequencyMap[num] > maxFrequency) {
+            maxFrequency = frequencyMap[num];
+            modes = [parseInt(num)];
+        } else if (frequencyMap[num] === maxFrequency) {
+            modes.push(parseInt(num));
+        }
+    }
+    return modes;
+}
+
+const numbers = [1, 2, 3, 3, 4, 4, 5];
+console.log("Mode:", calculateMode(numbers)); // Output: [3, 4]
+
+
+
+
+function calculateVariance(numbers) {
+    const mean = calculateMean(numbers);
+    const squaredDifferences = numbers.map(num => Math.pow(num - mean, 2));
+    return calculateMean(squaredDifferences);
+}
+
+const numbers = [1, 2, 3, 4, 5];
+console.log("Variance:", calculateVariance(numbers)); // Output: 2
+
+
+
+function calculateStandardDeviation(numbers) {
+    return Math.sqrt(calculateVariance(numbers));
+}
+
+const numbers = [1, 2, 3, 4, 5];
+console.log("Standard Deviation:", calculateStandardDeviation(numbers)); // Output: 1.4142135623730951
+
+
+
+
+
