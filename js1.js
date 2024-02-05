@@ -279,10 +279,7 @@ function calculateMode(numbers) {
     return modes;
 }
 
-const numbers = [1, 2, 3, 3, 4, 4, 5];
 console.log("Mode:", calculateMode(numbers)); // Output: [3, 4]
-
-
 
 
 function calculateVariance(numbers) {
@@ -291,7 +288,6 @@ function calculateVariance(numbers) {
     return calculateMean(squaredDifferences);
 }
 
-const numbers = [1, 2, 3, 4, 5];
 console.log("Variance:", calculateVariance(numbers)); // Output: 2
 
 
@@ -300,7 +296,6 @@ function calculateStandardDeviation(numbers) {
     return Math.sqrt(calculateVariance(numbers));
 }
 
-const numbers = [1, 2, 3, 4, 5];
 console.log("Standard Deviation:", calculateStandardDeviation(numbers)); // Output: 1.4142135623730951
 
 
