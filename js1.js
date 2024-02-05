@@ -105,3 +105,76 @@ greet("Mike");
 const add = (a, b) => a + b;
 console.log(add(2, 3));
 
+
+
+
+
+
+
+function alert() {
+    console.log(this.age + ' years');
+}
+const myObj = {
+    age: 24, 
+    alert: alert
+}
+myObj.alert() // 24 years
+
+
+
+
+function alert() {
+    console.log(this.age + ' years');
+}
+const myObj = {
+    age: 24, 
+    alert: alert, 
+    nestedObj: {
+        age: 26, 
+        alert: alert
+    }
+}
+myObj.alert(); // 24 years
+myObj.nestedObj.alert(); // 26 years
+
+
+
+function alert() {
+    console.log(this.age + ' years');
+}
+const myObj = {
+    age: 24
+}
+alert.call(myObj); // 24 years
+
+
+
+function giveAge(age) {
+    this.age = age;
+}
+const bar = new giveAge(24);
+console.log(bar.age); // 24
+
+
+
+// It has Block Scope
+{
+    let name = 'MIchael Stamatis';
+}
+
+
+// It has Global Scope
+const skyColor = 'blue';
+
+{
+    console.log(skyColor); // blue
+}
+
+function printSkyColor() {
+    console.log(skyColor); // blue
+}
+printSkyColor();
+
+
+
+
