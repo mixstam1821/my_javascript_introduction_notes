@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- GooglE fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Roman Numeral Conversion</title>
+</head>
+<style>
+    body{
+    margin: 0px auto;
+    padding: 0px auto;
+    box-sizing: border-box;
+    font-size: 10px;
+    font-family: cursive;
+   background-color: #97a5ff;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*justify-content: center;*/
+    padding: 10px; 
+}
+h1{
+    font-size: 2rem;
+    color: #fff;
+}
+input{
+    outline: 0;
+    width: 50vw;
+    margin: 10px 0;
+    height: 50px;
+    padding: 5px;
+    padding-left: 20px;
+    border-style: none;
+    border-radius: 5px;
+    background: rgba(35, 35, 35, 0.4);
+    font-size: 1.5rem;
+    color:ghostwhite;
+    text-align: center;
+    font-family: cursive;
+}
+::placeholder{
+    color: #fff;
+}
+@media(max-width: 500px) {
+    body{
+        padding-top: 20px;
+    }
+    h1{
+        font-size: 2rem;
+    }
+    input{
+        width: 70vw;
+        font-size: 2rem;
+    }
+}
+</style>
+<body>
+<div class="main">
+    <h1>ROMAN NUMERAL CONVERTER</h1>
+    <!-- arbic input -->
+    <input id="arabicInput" type="text" name="arabic"  placeholder="Enter an arabic number....">
+    <!-- roman input -->
+    <input id="romanInput" type="text" name="roma" value="" placeholder="Enter a roman number....">
+</div>
+<div style="margin-top: 40px;text-align:center;font-size:20px;">
+    <div class="made-with">
+        <h4 class="color" style="color:white;font-family: cursive;">Made with ❤️ by <a href="https://github.com/mixstam1821" style="color:white;font-family: cursive;">Michael Stamatis</a></h4>
+    </div>
+
+</div>
+<script>
+    const arabicInput = document.getElementById("arabicInput");
+const romanInput = document.getElementById("romanInput");
+
+arabicInput.addEventListener("input",(e)=>{
+    romanInput.value = arabicToRoman(e.target.value);
+});
+romanInput.addEventListener("input",(e)=>{
+    arabicInput.value = romanToArabic(e.target.value);
+
+});
+
+function arabicToRoman(number){
+    let roman = "";
+    const romanNumList = {M:1000,CM:900, D:500,CD:400, C:100, XC:90,L:50, XV: 40, X:10, IX:9, V:5, IV:4, I:1};
+    let a;
+    if(number > 3999)
+        return "Enter a number between 1 and 3999";
+    else{
+        for(let key in romanNumList){
+            a = Math.floor(number / romanNumList[key]);
+            if(a >= 0){
+                for(let i = 0; i < a; i++){
+                    roman += key;
+                }
+            }
+            number = number % romanNumList[key];
+        }
+    }
+
+    return roman;
+}
+function romanToArabic(romanNumber){
+    romanNumber = romanNumber.toUpperCase();
+    const romanNumList = ["CM","M","CD","D","XC","C","XL","L","IX","X","IV","V","I"];
+    const corresp = [900,1000,400,500,90,100,40,50,9,10,4,5,1];
+    let index =  0, num = 0;
+    for(let rn in romanNumList){
+        index = romanNumber.indexOf(romanNumList[rn]);
+        while(index != -1){
+            num += parseInt(corresp[rn]);
+            romanNumber = romanNumber.replace(romanNumList[rn],"-");
+            index = romanNumber.indexOf(romanNumList[rn]);
+        }
+    }
+    return num;
+}
+</script>
+</body>
+</html>
