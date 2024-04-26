@@ -1,0 +1,126 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+<style>
+    * {
+    background-color: #7de3ff;
+    font-family: cursive;
+
+}
+.change
+{
+  width:70vw;
+  padding-left:30%;
+}
+#encrypt
+{
+  color:#ff544e;
+}
+h1{
+    font-size: 3rem;
+    color: #fff;
+}
+p{
+    color: #fff;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*justify-content: center;*/
+    padding: 10px;
+    color:#fff;
+
+}
+button{
+    color:black;
+    background-color: white;
+}
+div
+{
+    background-color: #7de3ff;
+}
+input{
+    outline: 0;
+    width: 40vw;
+    margin: 10px 0;
+    height: 30px;
+    padding: 5px;
+    padding-left: 20px;
+    border-color: white;
+    border-radius: 5px;
+    background-color: #7de3ff;
+    font-size: 1.5rem;
+    text-decoration-color:white;
+    text-align: center;
+    font-family: cursive;
+}
+::placeholder{
+    color: white;
+}
+@media(max-width: 500px) {
+    body{
+        padding-top: 20px;
+    }
+    h1{
+        font-size: 7rem;
+    }
+    input{
+        width: 40vw;
+        font-size: 5rem;
+    }
+
+}
+</style>
+<body>
+    <div class = "main">
+        <h1>CAESAR'S CIPHER</h1>
+    </div>
+    <div class = "text-center">
+        <p>Caesar's Cipher is a simple encryption technique where each letter in the plaintext is shifted a certain number of places down or up the alphabet. <br/><br/>
+        <form name="str">
+        <div class="change">
+            <input type="text" id="text" class="form-control"  placeholder="Enter here text to encrypt..."/>
+        </div>
+        <button id="encrypt" class="btn btn-default">Encrypt</button>
+            <h4 id="output"></h4>
+<hr>
+        </form>
+        <div style="margin-top: 40px;text-align:center;font-size:40px;">
+            <div class="made-with">
+                <h4 class="color" style="color:white;font-family: cursive;">Made with ❤️ by <a href="https://github.com/mixstam1821" style="color:white;font-family: cursive;">Michael Stamatis</a></h4>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+$(document).ready(function(){
+    $("#encrypt").click(function(e){
+        e.preventDefault()
+        function rot11(form) { // 
+            var newstr = ""; // establishes a new variable in scope
+            for (var i = 0; i < form.length; i++){ //iterates through characters in str
+                var charCode = form.charCodeAt(i); // sets new var charCode to each character in str
+                if (charCode > 64 && charCode < 78) { // if the character is in first 11 of alpha
+                    newstr += String.fromCharCode(charCode+11); // set newstr equal to the character + 11
+                }
+                else if (charCode > 77 && charCode < 91){ // if the character is in last 11 of alpha
+                    newstr += String.fromCharCode(charCode-11);
+                }
+                else {
+                    newstr += form[i];
+                }
+            }
+            return newstr;
+        }
+        var text = $("#text").val();
+        var upCase = text.toUpperCase();
+        var encrypted = rot11(upCase);
+        $("#output").html(encrypted);
+    })
+})
+
+
+</script>
+</html>
